@@ -1,0 +1,44 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Random random = new Random();
+        int[] numbers = new int[30];
+        int minValue = 1;
+        int maxValue = 30;
+        int localMaxElement = 0;
+        int firstElementArray = numbers[0];
+        int secondElementArray = numbers[1];
+        int lastElementArray = numbers.Length - 1;
+        int penultimateElementArray = numbers.Length - 2;
+
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            numbers[i] = random.Next(minValue, maxValue);
+            Console.Write(numbers[i] + " ");
+        }
+
+        if (firstElementArray > secondElementArray)
+        {
+            Console.Write($"\n\n{firstElementArray} - локальный максимум.");
+        }
+
+        for (int i = 1; i < lastElementArray; i++)
+        {
+            if (numbers[i - 1] < numbers[i] && numbers[i] > numbers[i + 1])
+            {
+                Console.Write($"\n\n{numbers[i]} - локальный максимум.");
+                localMaxElement++;
+            }
+        }
+
+        if (numbers[lastElementArray] > numbers[penultimateElementArray])
+        {
+            Console.Write($"\n\n{lastElementArray} - локальный максимум.");
+            localMaxElement++;
+        }
+
+        Console.WriteLine($"\n\nВсего локальных элементов: {localMaxElement}.");
+        Console.ReadKey();
+    }
+}
